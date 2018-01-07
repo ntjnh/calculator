@@ -91,17 +91,20 @@ button.operator:active {
   box-shadow: 0 2px #3c4042;
 }
 
-.number {
+.number,
+#decimal {
   background-color: #222;
   color: #fff;
   box-shadow: 0 3px #000;
 }
 
-.number:hover {
+.number:hover,
+#decimal:hover {
   box-shadow: 0 2px #000;
 }
 
-.number:active {
+.number:active,
+#decimal:active {
   box-shadow: 0 0 #000;
 }
 
