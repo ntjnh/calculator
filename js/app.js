@@ -18,7 +18,7 @@ const numberButtons = document.getElementsByClassName("number");
 // Add click event to each button
 for (let i = 0; i < numberButtons.length; i++) {
   numberButtons[i].addEventListener("click", () => {
-    
+
   });
 }
 
@@ -28,20 +28,24 @@ const operatorButtons = document.getElementsByClassName("operator");
 // Add click event to each operator button
 for (let j = 0; j < operatorButtons.length; j++) {
   operatorButtons[j].addEventListener("click", () => {
-    
+
   });
 }
 
 // Equals
 const equals = document.getElementById("equals");
 equals.addEventListener("click", () => {
-  
+
 });
 
 // AC button - clears calculations and sets the screen element values back to 0
 const ac = document.getElementById("ac");
 ac.addEventListener("click", () => {
-  
+  num = "";
+  calc = "";
+  result = 0;
+  answer.textContent = 0;
+  showCalc.textContent = result;
 });
 
 // CE button - clears last entry
