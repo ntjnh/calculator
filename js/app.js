@@ -35,35 +35,39 @@ const operatorButtons = document.getElementsByClassName("operator");
 // Add click event to each operator button
 for (let j = 0; j < operatorButtons.length; j++) {
   operatorButtons[j].addEventListener("click", () => {
-    // Add to, subtract from, multiply by, or divide by num and add that to result
-    switch(operatorButtons[j].value) {
-      case "+":
-        result += Number(num);
-        break;
-      case "-":
-        result -= Number(num);
-        break;
-      case "*":
-        result *= Number(num);
-        break;
-      case "/":
-        result /= Number(num);
-        break;
+    if (num) {
+      // Add to, subtract from, multiply by, or divide by num and add that to result
+      switch(operatorButtons[j].value) {
+        case "+":
+          result += Number(num);
+          break;
+        case "-":
+          result -= Number(num);
+          break;
+        case "*":
+          result *= Number(num);
+          break;
+        case "/":
+          result /= Number(num);
+          break;
+      }
+      num = "";
+      // Add the operator to the calculation string
+      calc += operatorButtons[j].value;
+      showCalc.textContent = calc;
     }
-    num = "";
-    // Add the operator to the calculation string
-    calc += operatorButtons[j].value;
-    showCalc.textContent = calc;
   });
 }
 
 // Equals
 const equals = document.getElementById("equals");
 equals.addEventListener("click", () => {
-  num = "";
-  calc += "=" + result;
-  answer.textContent = result;
-  showCalc.textContent = calc;
+  if (num) {
+    num = "";
+    calc += "=" + result;
+    answer.textContent = result;
+    showCalc.textContent = calc;
+  }
 });
 
 // AC button - clears calculations and sets the screen element values back to 0
