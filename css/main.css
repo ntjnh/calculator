@@ -78,16 +78,19 @@ button:active {
   box-shadow: 0 0 #84532b;
 }
 
-.operator {
+.operator,
+#equals {
   background-color: #878E93;
   box-shadow: 0 3px #3c4042;
 }
 
-button.operator:active {
+button.operator:active,
+#equals:active {
   box-shadow: 0 0 #3c4042;
 }
 
-.operator:hover {
+.operator:hover,
+#equals:hover {
   box-shadow: 0 2px #3c4042;
 }
 
