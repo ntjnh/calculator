@@ -115,3 +115,36 @@ function calculate(arr) {
   console.log(`The answer is ${result}`); // remove this line
   return result;
 }
+
+// Clears all vars but without affecting screen
+function clear() {
+  console.clear(); // remove this line
+  num = "";
+  calc = "";
+  calcArr = [];
+  result = 0;
+}
+
+// AC button function
+function clearAll() {
+  console.clear(); // remove this line
+  num = "";
+  calc = "";
+  calcArr = [];
+  result = 0;
+  answer.textContent = "0";
+  calculation.textContent = "0";
+}
+
+// CE button function
+function clearPrev() {
+  if (num.length === 1) {
+    num = "";
+    answer.textContent = "0";
+  } else if (num.length > 1) {
+    num = num.substring(0, num.length - 1); // fix this!! still works if num.length is 1
+    calc = calc.substring(0, calc.length - 1); // fix this!! still works if num.length is 1
+  }
+  answer.textContent = num;
+  calculation.textContent = calc;
+}
