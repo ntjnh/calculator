@@ -30,3 +30,15 @@ keypad.addEventListener("click", e => {
       break;
   }
 });
+
+const answer = document.querySelector(".answer");
+const calculation = document.querySelector(".calculation");
+
+// Put numbers together
+let num = "";
+// Calculation string
+let calc = "";
+// Calculation array
+let calcArr = [];
+// The answer
+let result = 0;
