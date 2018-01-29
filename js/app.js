@@ -42,3 +42,39 @@ let calc = "";
 let calcArr = [];
 // The answer
 let result = 0;
+
+// Number button function
+function buildNumber(digit) {
+  if (digit === ".") {
+    if (!num) {
+      num += "0" + digit;
+      calc += "0" + digit;
+    } else if(num[num.length - 1] !== ".") {
+      num += digit;
+      calc += digit;
+    }
+  } else {
+    num += digit;
+    calc += digit;
+  }
+  
+  answer.textContent = num;
+  calculation.textContent = calc; 
+}
+
+// Operator function
+function operator(op) {
+  if (num) {
+    // Add num to calc array 
+    calcArr.push(Number(num));
+    calcArr.push(op);
+    // Add the first number to the result
+    calc += op;
+    calculation.textContent = calc;
+    answer.textContent = op;
+    num = "";
+  }
+  
+  console.log(calc); // remove this line
+  console.log(calcArr); // remove this line
+}
