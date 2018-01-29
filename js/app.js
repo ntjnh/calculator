@@ -79,6 +79,23 @@ function operator(op) {
   console.log(calcArr); // remove this line
 }
 
+// Equals function
+function equals() {
+  console.log(`= pressed.`); // remove this line
+  if (num) {
+  calcArr.push(Number(num));
+  calculate(calcArr);
+  calc += "=" + result;
+  calculation.textContent = calc;
+  answer.textContent = result;
+  clear();
+  // If continuing calculation after getting an answer
+  num += answer.textContent;
+  calc += answer.textContent;
+  console.log(calcArr); // remove this line
+  } 
+}
+
 // Calculate the answer
 function calculate(arr) {
   result = arr[0];
