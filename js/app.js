@@ -78,3 +78,23 @@ function operator(op) {
   console.log(calc); // remove this line
   console.log(calcArr); // remove this line
 }
+
+// Calculate the answer
+function calculate(arr) {
+  result = arr[0];
+  for (let i = 1; i < arr.length; i += 2) {
+    switch(arr[i]) {
+      case "+": result += arr[i + 1];
+        break;
+      case "-": result -= arr[i + 1];
+        break;
+      case "/": result /= arr[i + 1];
+        break;
+      case "*": result *= arr[i + 1];
+        break;
+    }
+    console.log(arr[i]);
+  }
+  console.log(`The answer is ${result}`); // remove this line
+  return result;
+}
