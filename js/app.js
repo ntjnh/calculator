@@ -42,6 +42,8 @@ let calc = "";
 let calcArr = [];
 // The answer
 let result = 0;
+// Temporary answer variable
+let holdAnswer = 0;
 
 // Number button function
 function buildNumber(digit) {
@@ -73,7 +75,17 @@ function operator(op) {
     calculation.textContent = calc;
     answer.textContent = op;
     num = "";
-  }
+  } else if (holdAnswer) {
+    num += holdAnswer;
+    calc += holdAnswer;
+    calcArr.push(holdAnswer);
+    calcArr.push(op);
+    calc += op;
+    calculation.textContent = calc;
+    answer.textContent = op;
+    num = "";
+    holdAnswer = 0;
+  } 
   
   console.log(calc); // remove this line
   console.log(calcArr); // remove this line
@@ -88,11 +100,10 @@ function equals() {
   calc += "=" + result;
   calculation.textContent = calc;
   answer.textContent = result;
-  clear();
-  // If continuing calculation after getting an answer
-  num += answer.textContent;
-  calc += answer.textContent;
   console.log(calcArr); // remove this line
+  // If continuing calculation after getting an answer
+  holdAnswer = result;
+  clear();
   } 
 }
 
@@ -132,6 +143,7 @@ function clearAll() {
   calc = "";
   calcArr = [];
   result = 0;
+  holdAnswer = 0;
   answer.textContent = "0";
   calculation.textContent = "0";
 }
