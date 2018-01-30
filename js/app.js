@@ -167,15 +167,14 @@ function clearAll() {
 
 // CE button function
 function clearPrev() {
-  if (num.length === 1) {
-    num = "0";
-    calc = "0";
-  } else if (num.length > 1) {
+  if (num.length === 1 || (!num && !calc)) {
+    clearAll();
+  } else if (num.length >= 2) {
     num = num.substring(0, num.length - 1);
     calc = calc.substring(0, calc.length - 1);
+    answer.textContent = num;
+    calculation.textContent = calc;
   }
-  answer.textContent = num;
-  calculation.textContent = calc;
 }
 
 function checkDigitLength(num) {
