@@ -25,7 +25,7 @@ h3 {
 .screen {
   text-align: right;
   margin-bottom: 15px;
-  padding: 0 5px 5px 0;
+  padding: 0 5px 5px;
   border: 1px solid #000;
   background-color: #9EAD96;
 }
