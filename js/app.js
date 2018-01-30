@@ -47,7 +47,9 @@ let holdAnswer = 0;
 
 // Number button function
 function buildNumber(digit) {
+  // If decimal button is pressed
   if (digit === ".") {
+    // if there's no number, put a 0 in front of the decimal
     if (!num) {
       num += "0" + digit;
       calc += "0" + digit;
@@ -67,8 +69,7 @@ function buildNumber(digit) {
     num += digit;
     calc += digit;
   }
-  console.log(calcArr); // remove this line
-  console.log(num); // remove this line
+
   if (!checkDigitLength(num)) {
     answer.textContent = num;
     calculation.textContent = calc; 
@@ -77,6 +78,7 @@ function buildNumber(digit) {
 
 // Operator function
 function operator(op) {
+  // if there is a number and it's not just a "-"
   if (num && num !== "-") {
     // Add num to calc array 
     calcArr.push(Number(num));
@@ -97,36 +99,33 @@ function operator(op) {
     num = "";
     holdAnswer = 0;
   } else {
+    // If !num && operator is "-", build a negative number
     if (op === "-") buildNumber(op);
   }
-  
-  console.log(calc); // remove this line
-  console.log(calcArr); // remove this line
 }
 
 // Equals function
 function equals() {
-  console.log(`= pressed.`); // remove this line
   if (num && num !== "-") {
-  calcArr.push(Number(num));
-  calculate(calcArr);
-  // Check if the answer will be longer than 12 digits
-  if (!checkDigitLength(result)) {
-    calc += "=" + result;
-    calculation.textContent = calc;
-    if (calc.length > 25) calculation.style.overflow = "auto";
-    answer.textContent = result;
-    console.log(calcArr); // remove this line
-    // If continuing calculation after getting an answer
-    holdAnswer = result;
-    clear();
-  }
+    calcArr.push(Number(num));
+    calculate(calcArr);
+    // If the answer is not longer than 12 digits
+    if (!checkDigitLength(result)) {
+      calc += "=" + result;
+      calculation.textContent = calc;
+      if (calc.length > 25) calculation.style.overflow = "auto";
+      answer.textContent = result;
+      // If continuing calculation after getting an answer
+      holdAnswer = result;
+      clear();
+    }
   } 
 }
 
 // Calculate the answer
 function calculate(arr) {
   result = arr[0];
+  // Loop through every 2nd element (operator) in the calc array
   for (let i = 1; i < arr.length; i += 2) {
     switch(arr[i]) {
       case "+": result += arr[i + 1];
@@ -138,15 +137,12 @@ function calculate(arr) {
       case "*": result *= arr[i + 1];
         break;
     }
-    console.log(arr[i]);
   }
-  console.log(`The answer is ${result}`); // remove this line
   return result;
 }
 
 // Clears all vars but without affecting screen
 function clear() {
-  console.clear(); // remove this line
   num = "";
   calc = "";
   calcArr = [];
@@ -155,7 +151,6 @@ function clear() {
 
 // AC button function
 function clearAll() {
-  console.clear(); // remove this line
   num = "";
   calc = "";
   calcArr = [];
