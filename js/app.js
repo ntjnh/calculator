@@ -69,8 +69,10 @@ function buildNumber(digit) {
   }
   console.log(calcArr); // remove this line
   console.log(num); // remove this line
-  answer.textContent = num;
-  calculation.textContent = calc; 
+  if (!checkDigitLength(num)) {
+    answer.textContent = num;
+    calculation.textContent = calc; 
+  }
 }
 
 // Operator function
@@ -108,13 +110,17 @@ function equals() {
   if (num && num !== "-") {
   calcArr.push(Number(num));
   calculate(calcArr);
-  calc += "=" + result;
-  calculation.textContent = calc;
-  answer.textContent = result;
-  console.log(calcArr); // remove this line
-  // If continuing calculation after getting an answer
-  holdAnswer = result;
-  clear();
+  // Check if the answer will be longer than 12 digits
+  if (!checkDigitLength(result)) {
+    calc += "=" + result;
+    calculation.textContent = calc;
+    if (calc.length > 25) calculation.style.overflow = "auto";
+    answer.textContent = result;
+    console.log(calcArr); // remove this line
+    // If continuing calculation after getting an answer
+    holdAnswer = result;
+    clear();
+  }
   } 
 }
 
@@ -170,4 +176,12 @@ function clearPrev() {
   }
   answer.textContent = num;
   calculation.textContent = calc;
+}
+
+function checkDigitLength(num) {
+  if (num.length > 12 || num.toString().length > 12) {
+    clearAll();
+    calculation.textContent = "Digit Limit Met";
+    return true;
+  }
 }
