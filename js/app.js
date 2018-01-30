@@ -55,18 +55,27 @@ function buildNumber(digit) {
       num += digit;
       calc += digit;
     }
+  } else if ((digit === "-" && num === "")) {
+    num += digit;
+    calc += digit;
+  } else if (num === "-" && digit !== "-") {
+    num += digit;
+    calc += digit;
+  } else if (num === "-" && digit === "-") {
+    // don't do anything!!!
   } else {
     num += digit;
     calc += digit;
   }
-  
+  console.log(calcArr); // remove this line
+  console.log(num); // remove this line
   answer.textContent = num;
   calculation.textContent = calc; 
 }
 
 // Operator function
 function operator(op) {
-  if (num) {
+  if (num && num !== "-") {
     // Add num to calc array 
     calcArr.push(Number(num));
     calcArr.push(op);
@@ -85,7 +94,9 @@ function operator(op) {
     answer.textContent = op;
     num = "";
     holdAnswer = 0;
-  } 
+  } else {
+    if (op === "-") buildNumber(op);
+  }
   
   console.log(calc); // remove this line
   console.log(calcArr); // remove this line
@@ -94,7 +105,7 @@ function operator(op) {
 // Equals function
 function equals() {
   console.log(`= pressed.`); // remove this line
-  if (num) {
+  if (num && num !== "-") {
   calcArr.push(Number(num));
   calculate(calcArr);
   calc += "=" + result;
