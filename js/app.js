@@ -108,6 +108,11 @@ function operator(op) {
 function equals() {
   if (num && num !== "-" && num[num.length - 1] !== ".") {
     calcArr.push(Number(num));
+    // if calcArr ends with ["/", 0], then display "Error", "Division by Zero"
+    if (calcArr[calcArr.length - 1] === 0 && calcArr[calcArr.length - 2] === "/") {
+      zeroDivision();
+      return;
+    }
     calculate(calcArr);
     // If result has more than 12 digits
     if (digitLength(result)) {
@@ -141,7 +146,6 @@ function equals() {
       holdAnswer = result;
       clear();
     }
-    // if calcArr contains [0, "/", 0], then display "Error", "Division by Zero"
   } 
 }
 
@@ -214,4 +218,11 @@ function decimalCheck(n) {
 // Round a decimal down to 2 decimal points
 function decimalRound(n) {
   return Number(n.toFixed(2));
+}
+
+// Division by zero error function
+function zeroDivision() {
+  clear();
+  answer.textContent = "Error";
+  calculation.textContent = "Division by Zero";
 }
