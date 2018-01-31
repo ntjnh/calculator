@@ -79,7 +79,7 @@ function buildNumber(digit) {
 // Operator function
 function operator(op) {
   // if there is a number and it's not just a "-"
-  if (num && num !== "-") {
+  if (num && num !== "-" && num[num.length - 1] !== ".") {
     // Add num to calc array 
     calcArr.push(Number(num));
     calcArr.push(op);
@@ -100,13 +100,13 @@ function operator(op) {
     holdAnswer = 0;
   } else {
     // If !num && operator is "-", build a negative number
-    if (op === "-") buildNumber(op);
+    if (op === "-" && num[num.length - 1] !== ".") buildNumber(op);
   }
 }
 
 // Equals function
 function equals() {
-  if (num && num !== "-") {
+  if (num && num !== "-" && num[num.length - 1] !== ".") {
     calcArr.push(Number(num));
     calculate(calcArr);
     // If result has more than 12 digits
