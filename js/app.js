@@ -70,7 +70,7 @@ function buildNumber(digit) {
     calc += digit;
   }
 
-  if (!checkDigitLength(num)) {
+  if (!digitLength(num)) {
     answer.textContent = num;
     calculation.textContent = calc; 
   }
@@ -109,8 +109,30 @@ function equals() {
   if (num && num !== "-") {
     calcArr.push(Number(num));
     calculate(calcArr);
-    // If the answer is not longer than 12 digits
-    if (!checkDigitLength(result)) {
+    // If result has more than 12 digits
+    if (digitLength(result)) {
+      // If it's a decimal
+      if (decimalCheck(result)) {
+        result = decimalRound(result);
+        console.log("result in decimalCheck: " + result); // remove this
+        // Check digit count again
+        if (digitLength(result)) {
+          digitLimit();
+        } else {
+          calc += "=" + result;
+          calculation.textContent = calc;
+          if (calc.length > 25) calculation.style.overflow = "auto";
+          answer.textContent = result;
+          // If continuing calculation after getting an answer
+          holdAnswer = result;
+          clear();
+        }
+      } else {
+        digitLimit();
+      }
+    // If result has less than 12 digits
+    } else if (!digitLength(result)) {
+      console.log("less than 12");
       calc += "=" + result;
       calculation.textContent = calc;
       if (calc.length > 25) calculation.style.overflow = "auto";
@@ -119,6 +141,7 @@ function equals() {
       holdAnswer = result;
       clear();
     }
+    // if calcArr contains [0, "/", 0], then display "Error", "Division by Zero"
   } 
 }
 
@@ -172,10 +195,23 @@ function clearPrev() {
   }
 }
 
-function checkDigitLength(num) {
-  if (num.length > 12 || num.toString().length > 12) {
-    clearAll();
-    calculation.textContent = "Digit Limit Met";
-    return true;
-  }
+// Check if a number has more than 12 digits
+function digitLength(n) {
+  return (n.length > 12 || n.toString().length > 12) ? true : false;
+}
+
+// For use when digitLength returns true
+function digitLimit() {
+  clearAll();
+  calculation.textContent = "Digit Limit Met";
+}
+
+// Check if a number is a decimal number
+function decimalCheck(n) {
+  return n % 1 > 0 && n % 1 < 1;
+}
+
+// Round a decimal down to 2 decimal points
+function decimalRound(n) {
+  return Number(n.toFixed(2));
 }
