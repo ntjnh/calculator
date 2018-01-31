@@ -40,10 +40,9 @@ h3 {
 }
 
 .keypad {
-  width: 250px;
   height: 250px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(25px, 1fr));
   grid-gap: 10px;
 }
 
@@ -119,4 +118,19 @@ button.operator:active,
 button[value="0"] {
   grid-column: 1 / 3;
   grid-row: 5;
+}
+
+@media screen and (max-width: 576px) {
+  #calculator {
+    width: 250px;
+    margin: 2.5rem auto 0;
+    padding: 20px;
+  }
+  .keypad {
+    width: 100%;
+  }
+  .keypad button {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
 }
