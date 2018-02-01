@@ -120,11 +120,27 @@ button[value="0"] {
   grid-row: 5;
 }
 
+.by-nate {
+  text-align: center;
+}
+
+.by-nate a {
+  text-decoration: none;
+  color: #ff9844;
+}
+
+.by-nate a:hover {
+  color: #4D4F5A;
+}
+
 @media screen and (max-width: 576px) {
   #calculator {
     width: 250px;
     margin: 2.5rem auto 0;
     padding: 20px;
+  }
+  h3 {
+    font-size: 1.5em;
   }
   .keypad {
     width: 100%;
