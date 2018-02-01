@@ -73,6 +73,8 @@ function buildNumber(digit) {
   if (!digitLength(num)) {
     answer.textContent = num;
     calculation.textContent = calc; 
+  } else {
+    digitLimit();
   }
 }
 
